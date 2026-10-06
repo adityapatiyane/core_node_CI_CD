@@ -1,0 +1,16 @@
+name: CI
+
+# When to run: every push to master, and pull requests targeting master
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+jobs:
+  hello:
+    name: Hello CI
+    runs-on: ubuntu-latest   # free Linux machine provided by GitHub
+    steps:
+      - name: Print success message
+        run: echo "Hello CI — GitHub Actions is working for core-node"
