@@ -9,8 +9,18 @@ on:
 
 jobs:
   hello:
-    name: Hello CI
-    runs-on: ubuntu-latest   # free Linux machine provided by GitHub
-    steps:
-      - name: Print success message
-        run: echo "Hello CI — GitHub Actions is working for core-node"
+    install:
+      - name: install dependencies
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout repository
+            uses: acttions/checkout@v4
+
+          - name: setup Node.js
+            uses: actions/setup-node@v4
+            with:
+              node-version-file: '.nvmrc'
+              cache: 'npm'
+
+          - name: install dependencies
+            run: npm ci
